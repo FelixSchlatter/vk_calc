@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<title>Velokurier.sg Preiskalkulator</title>
+<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet"> 
+<link rel="stylesheet" type="text/css" media="all" href="style.css" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">    
+
+
+<meta http-equiv="cache-control" content="max-age=0" />
+<meta http-equiv="cache-control" content="no-cache" />
+<meta http-equiv="expires" content="0" />
+<meta http-equiv="pragma" content="no-cache" />
+
+
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/select2.full.min.js"></script>
+<script type="text/javascript" src="js/de.js"></script>
+<script type="text/javascript" src="js/script.js"></script>
+</head>
+
+<body>
+
+<div id="loading" class="loading hidden">
+      <div class="insidetext">Einen Augenblick, Ihre Anfrage wird geprüft...</div>
+</div>
+
+
+ <div class="vksg_calculator">
+  <form>
+      <div class="vksg_inputs">
+        <select class="select-zip" name="id_from" id="id_from">
+          <option>PLZ oder Ort Start</option>
+        </select>
+        <select class="select-zip select-zip-2" name="id_to" id="id_to">
+          <option>PLZ oder Ort Ziel</option>
+        </select>
+          
+          <label for="gewicht">Gewicht in Kilogramm:</label>
+          <input type="number" name="gewicht" id="gewicht" size="2" value="1" min="1" max="50" step="1"/>
+          <div id="neu">
+            <input type="button" class="button" id="superbutton" value="Preisanfrage">
+          </div>
+        </div>
+  </form>
+  <div id="ergebnis"></div>
+  <div id="bemerkungen"></div>
+</div>
+</body>
+</html>
