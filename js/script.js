@@ -3,7 +3,7 @@ $(document).ready(function() {
 var keinestrecketext = "Es wurde keine Verbindung gefunden.<br/>Bitte rufen Sie uns an für eine nähere Auskunft: 071 223 1000";
 var localID = 900;
 var addPrice = 10.80;
-var partnerID = ["22"];
+var partnerID = ["28"];
 var keinestreckediv = $("#bemerkungen");
 
 function file(daten) {
