@@ -1,7 +1,6 @@
 $(document).ready(function() {
 /// BASIS KONF!
 var keinestrecketext = "Es wurde keine Verbindung gefunden.<br/>Bitte rufen Sie uns an für eine nähere Auskunft: 071 223 1000";
-var localID = 900;
 var addPrice = 10.80;
 var partnerID = ["28"];
 var keinestreckediv = $("#bemerkungen");
@@ -25,7 +24,7 @@ function preisanfrage() {
     var gewicht = $('#gewicht').val();
     var text = file('http://www.mutatis.ch/api/apiall.php?id_from=' + idexp + '&id_to=' + iddest + '&weight=' + gewicht);
     var json = eval('(' + text + ')');
-    var nb_de_ergebnis = 0;
+    var noNo_ergebnis = 0;
     var iDQuestion = 0;
     var bemerkung = '';
     var stunden;
@@ -35,17 +34,20 @@ function preisanfrage() {
     var ergebnis = '';
 
     if (idexp == 0 || iddest == 0 || idexp == '' || iddest == '') {
-        nb_de_ergebnis = 0;
+        noNo_ergebnis = 0;
         iDQuestion = 1;
     } else {
         for (var j = 0; j < json['api'].length; j++) {
             code = json['api'][j];
 
             if (json[code]['base_price_et'] > 1) {
-
-                if (nb_de_ergebnis != 0) {
+                /*
+                if (noNo_ergebnis != 0) {
                     ergebnis += '';
-                } else if (code == 999 || code == 900) {
+                } 
+                else if 
+                */
+                if (code == 999 || code == 900) {
                     var baseprice = json[code]['base_price_it'];
                     var finalsum = Math.abs(parseFloat(baseprice) + addPrice);
 
@@ -73,17 +75,16 @@ function preisanfrage() {
                     }
 
                     if (iDcheckFrom == partnerID || iDcheckTo == partnerID) {
-                        ergebnis += '<div class="row ' + code + '">Preis inkl. MwSt. CHF <span class="preis">' + json[code]['base_price_it'] + '</span></div>';
+                        ergebnis += '<div class="row code' + code + '">Preis inkl. MwSt. CHF <span class="preis">' + json[code]['base_price_it'] + '</span></div>';
                     } else {
                         ergebnis +=
-                            '<div class="row ' + code + '">Preis inkl. MwSt. CHF <span class="preis">' + finalsum + '</span></div>';
+                            '<div class="row code' + code + '">Preis inkl. MwSt. CHF <span class="preis">' + finalsum + '</span></div>';
                     }
 
-                } // ende code 999
+                } // ende code 999 AND 900
                 else {
-                    var baseprice = json[code]['base_price_it'];
-                    var finalsum = Math.abs(parseFloat(baseprice) + addPrice);
-                    ergebnis += '<div class="row ' + code + '">' + keinestrecketext + '</div>';
+                    bemerkung = '<div class="row">' + keinestrecketext + '</div>';
+                    //ergebnis += '<div class="row code' + code + '">' + keinestrecketext + '</div>';
                 }
                 if (json[code]['weight_tax_et'] > 1) {
                     ergebnis += '<div class="row">Gewichtszuschlag (' + json[code]['weight_label'] + ') inkl. MwSt. CHF <span class="preis">' + json[code]['weight_tax_it'] + '</span></div>';
@@ -95,20 +96,20 @@ function preisanfrage() {
                     if (minuten < 10) {
                         minuten = '0' + minuten;
                     }
-                    if (code == 999) {
+                    if (code == 999 || code == 900) {
                         ergebnis += '<div class="row">Ungefähre Dauer der Lieferung: ' + stunden + 'h' + minuten + '</div>';
                     } else {
                         //ergebnis += '<div class="row ' + code + '">' + keinestrecketext + '</div>';
                     }
                 }
-                nb_de_ergebnis++;
+                noNo_ergebnis++;
             }
         }
     }
     ergebnis += '</div>';
     $('.loading').addClass("hidden");
 
-    if (nb_de_ergebnis != 0) {} else {
+    if (noNo_ergebnis != 0) {} else {
         if (iDQuestion == 1) {
             bemerkung = '<div class="row">' + keinestrecketext + '</div>';
         } else {
@@ -121,6 +122,14 @@ function preisanfrage() {
 
     $(idexp).val('');
     $(iddest).val('');
+
+    if ($('#ergebnis').children(".code900").length > 0) {
+        if ($('#ergebnis').children(".code999").length > 0) {
+            $('.code999').remove();
+        } 
+        
+    } 
+
 }
 
 

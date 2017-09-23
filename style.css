@@ -118,6 +118,8 @@ input[type="number"] {
 .row .preis {
 	font-weight: bold;
 }
-
+.hidden {
+	display: none;visibility: hidden;
+}
 
 .clearfix:after,.clearfix:before{content:" ";display:table}.clearfix:after{clear:both}
