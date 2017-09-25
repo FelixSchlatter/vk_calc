@@ -80,15 +80,16 @@ function preisanfrage() {
                         ergebnis +=
                             '<div class="row code' + code + '">Preis inkl. MwSt. CHF <span class="preis">' + finalsum + '</span></div>';
                     }
+                     if (json[code]['weight_tax_et'] > 1) {
+                    ergebnis += '<div class="row code' + code + '">Gewichtszuschlag (' + json[code]['weight_label'] + ') inkl. MwSt. CHF <span class="preis">' + json[code]['weight_tax_it'] + '</span></div>';
+                    }
 
                 } // ende code 999 AND 900
                 else {
-                    bemerkung = '<div class="row">' + keinestrecketext + '</div>';
+                   // bemerkung = '<div class="row code' + code + '">' + keinestrecketext + '</div>';
                     //ergebnis += '<div class="row code' + code + '">' + keinestrecketext + '</div>';
                 }
-                if (json[code]['weight_tax_et'] > 1) {
-                    ergebnis += '<div class="row">Gewichtszuschlag (' + json[code]['weight_label'] + ') inkl. MwSt. CHF <span class="preis">' + json[code]['weight_tax_it'] + '</span></div>';
-                }
+               
 
                 if (json[code]['time'] != '' && json[code]['time'] != 0) {
                     stunden = Math.trunc(json[code]['time'] / 60)
