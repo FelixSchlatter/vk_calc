@@ -97,8 +97,8 @@ function preisanfrage() {
                     if (minuten < 10) {
                         minuten = '0' + minuten;
                     }
-                    if (code == 999 || code == 900) {
-                        ergebnis += '<div class="row">Ungefähre Dauer der Lieferung: ' + stunden + 'h' + minuten + '</div>';
+                    if (code == 999) {
+                        ergebnis += '<div class="row code' + code + '">Ungefähre Dauer der Lieferung: ' + stunden + 'h' + minuten + '</div>';
                     } else {
                         //ergebnis += '<div class="row ' + code + '">' + keinestrecketext + '</div>';
                     }
