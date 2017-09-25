@@ -41,12 +41,6 @@ function preisanfrage() {
             code = json['api'][j];
 
             if (json[code]['base_price_et'] > 1) {
-                /*
-                if (noNo_ergebnis != 0) {
-                    ergebnis += '';
-                } 
-                else if 
-                */
                 if (code == 999 || code == 900) {
                     var baseprice = json[code]['base_price_it'];
                     var finalsum = Math.abs(parseFloat(baseprice) + addPrice);
@@ -83,14 +77,8 @@ function preisanfrage() {
                      if (json[code]['weight_tax_et'] > 1) {
                     ergebnis += '<div class="row code' + code + '">Gewichtszuschlag (' + json[code]['weight_label'] + ') inkl. MwSt. CHF <span class="preis">' + json[code]['weight_tax_it'] + '</span></div>';
                     }
-
-                } // ende code 999 AND 900
-                else {
-                   // bemerkung = '<div class="row code' + code + '">' + keinestrecketext + '</div>';
-                    //ergebnis += '<div class="row code' + code + '">' + keinestrecketext + '</div>';
-                }
-               
-
+                } 
+                else {}
                 if (json[code]['time'] != '' && json[code]['time'] != 0) {
                     stunden = Math.trunc(json[code]['time'] / 60)
                     minuten = json[code]['time'] - 60 * Math.trunc(json[code]['time'] / 60);
@@ -99,9 +87,7 @@ function preisanfrage() {
                     }
                     if (code == 999) {
                         ergebnis += '<div class="row code' + code + '">Ungefähre Dauer der Lieferung: ' + stunden + 'h' + minuten + '</div>';
-                    } else {
-                        //ergebnis += '<div class="row ' + code + '">' + keinestrecketext + '</div>';
-                    }
+                    } else {}
                 }
                 noNo_ergebnis++;
             }
@@ -127,16 +113,12 @@ function preisanfrage() {
     if ($('#ergebnis').children(".code900").length > 0) {
         if ($('#ergebnis').children(".code999").length > 0) {
             $('.code999').remove();
-        } 
-        
+        }  
     } 
-
 }
 
 
   $("#superbutton").click(preisanfrage);
-
-
     var plzID = function() {
         if (1 === 1) {
             $('#calculator').removeClass('hidden');
